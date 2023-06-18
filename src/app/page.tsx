@@ -1,10 +1,14 @@
 import Image from 'next/image'
+import Chat from './Chat'
 import Completion from './Completion'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Completion />  
+    <main className='min-h-screen p-4 md:p-12 flex flex-col justify-between'>
+      <div className='flex flex-col md:flex-row justify-start items-center gap-4'>  
+        <Chat />
+        <Completion />  
+      </div>
     </main>
   )
 }
