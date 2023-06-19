@@ -1,23 +1,28 @@
-import { Configuration, OpenAIApi } from 'openai-edge'
-import { OpenAIStream, StreamingTextResponse } from 'ai'
-
-const config = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
-})
-const openai = new OpenAIApi(config)
+import { StreamingTextResponse, LangChainStream, Message } from 'ai'
+import { CallbackManager } from 'langchain/callbacks'
+import { ChatOpenAI } from 'langchain/chat_models/openai'
+import { AIChatMessage, HumanChatMessage } from 'langchain/schema'
 
 export const runtime = 'edge'
 
 export async function POST(req: Request) {
   const { messages } = await req.json()
+  const { stream, handlers } = LangChainStream()
 
-  const response = await openai.createChatCompletion({
-    model: 'gpt-3.5-turbo',
-    stream: true,
-    messages
+  const llm = new ChatOpenAI({
+    streaming: true,
+    callbackManager: CallbackManager.fromHandlers(handlers)
   })
 
-  const stream = OpenAIStream(response)
-
+  llm
+    .call(
+      (messages as Message[]).map(m =>
+        m.role == 'user'
+          ? new HumanChatMessage(m.content)
+          : new AIChatMessage(m.content)
+      )
+    )
+    .catch(console.error)
+  
   return new StreamingTextResponse(stream)
 }
