@@ -29,9 +29,7 @@ export async function POST(req: Request) {
   //   .catch(console.error)
 
   const vectorStore = new VectorStore()
-
   const store = await vectorStore.init()
-  console.log(`[api/chat] store: `, store)
 
   const chain = ConversationalRetrievalQAChain.fromLLM(
     llm,
