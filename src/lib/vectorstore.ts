@@ -1,6 +1,6 @@
-import 'server-only'
-import fs from 'fs/promises'
+// import 'server-only'
 import path from 'path'
+import fs from 'fs/promises'
 import { DirectoryLoader } from 'langchain/document_loaders/fs/directory'
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
