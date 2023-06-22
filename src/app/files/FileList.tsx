@@ -6,7 +6,7 @@ const FILE_DIRECTORY = path.resolve('src/data/pdf')
 async function getFileNames() {
   const fileNames = await fs.readdir(FILE_DIRECTORY)
   const filteredFileNames = fileNames.filter(fileName => fileName !== '.DS_Store')
-  console.log(`[getFileNames] filteredFileNames: `, filteredFileNames)
+  // console.log(`[getFileNames] filteredFileNames: `, filteredFileNames)
   return filteredFileNames
 }
 
