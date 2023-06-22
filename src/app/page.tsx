@@ -1,7 +1,6 @@
-import Image from 'next/image'
 import Chat from './Chat'
 import Completion from './Completion'
-import Documents from './Documents'
+import Files from './files/Files'
 
 export default function Home() {
   return (
@@ -10,7 +9,7 @@ export default function Home() {
         <Chat />
         <Completion />
       </div>
-      <Documents />
+      <Files />
     </main>
   )
 }
