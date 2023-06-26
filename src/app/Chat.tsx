@@ -6,7 +6,7 @@ export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat()
 
   return (
-    <div className='w-full max-w-full py-4 flex flex-col'>
+    <div className='w-full h-full py-4 flex flex-col'>
       <div className='mb-2'>
         <span className='text-xl font-bold'>Chat</span>
       </div>

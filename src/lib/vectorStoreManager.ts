@@ -26,7 +26,8 @@ class VectorStoreManager {
     // TODO: Check if vectorStore exists
     // - If it does, load it
     // - If it doesn't, create it
-    const vectorStore = await this.create()
+    // const vectorStore = await this.create()
+    const vectorStore = await this.load()
     
     return vectorStore
   }

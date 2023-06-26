@@ -14,8 +14,8 @@ export default async function FileList() {
   const fileNames = await getFileNames()
 
   return (
-    <div className='w-full h-full p-4'>
-      <ul className='list-disc'>
+    <div className='w-full h-full'>
+      <ul className='list-disc pl-4'>
         {
           fileNames.map((fileName, index) => (
             <li key={index} className=''>
