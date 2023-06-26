@@ -33,10 +33,7 @@ class VectorStoreManager {
   }
 
   async create() {
-    for (let url of PDF_URLS) {
-      const pdfDocs = await this.loadRemotePDF(url)
-      this.docs.push(...pdfDocs)
-    }
+    await this.loadFiles()
     console.log(`[VectorStoreManager.create] docs: `, this.docs.length)
     const vectorStore = await Chroma.fromDocuments(
       this.docs,
@@ -60,6 +57,13 @@ class VectorStoreManager {
   }
 
   async addDocuments() {}
+
+  async loadFiles(urls: string[] = PDF_URLS) {
+    for (let url of urls) {
+      const pdfDocs = await this.loadRemotePDF(url)
+      this.docs.push(...pdfDocs)
+    }
+  }
 
   async loadRemotePDF(url: string) {
     console.log(`[VectorStoreManager.loadRemotePDF] Fetching PDF at ${url}...`)
